@@ -288,7 +288,7 @@
                             <div class="cover"><img src="crown.png" alt="bestScore"></div>
 
                             <p class="point"> <span class="color">${info}</span> </p>
-                                <p class="point">Vous Avez <span class="color">${total}</span> </p>
+                                <p class="point">Vous Avez <span class="color">${total} / ${questions.length*10} </span> </p>
                                 
                             </div>
                                 <a href="index.html" class="btn" id="start">Recommencer</a>
@@ -411,7 +411,7 @@
                         <div class="cover"><img src="crown.png" alt="bestScore"></div>
 
                         <p class="point"> <span class="color">${info}</span> </p>
-                        <p class="point">Vous Avez <span class="color">${total}</span> </p>
+                        <p class="point">Vous Avez <span class="color">${total} / ${questions.length*10} </span> </p>
 
                         </div>
                         <a href="index.html" class="btn" id="start">Recommencer</a>
@@ -430,8 +430,9 @@
 
         function best(currentScore) {
 
+        
 
-            // localStorage.setItem("highScore", null);
+            localStorage.setItem("total", questions.length*10);
             // const points = localStorage.getItem("points");
 
             let highScore = localStorage.getItem("highScore");
