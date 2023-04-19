@@ -119,6 +119,7 @@ body{
 }
 #bestScore{
     margin-bottom: 30px;
+    margin-top: 30px;
     color: #ffffffc9;
     border: solid #ffffffc9;
     background: var(--input);
@@ -259,7 +260,7 @@ a{
     color: white;
     font-size: 1.2rem;
     font-weight: 900;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
 
 }
 .answer{
@@ -276,4 +277,13 @@ a{
 .cover img{
     width: 200px;
     height: 200px;
+}
+
+.maj{
+    text-align: center;
+  
+}
+.aut{
+    margin-top: 20px;
+    text-align: center;
 }
