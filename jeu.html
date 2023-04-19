@@ -41,7 +41,7 @@
         let timeDown = document.querySelector(".time")
         const optionInput = document.createElement("input");
         let countdown = document.getElementById("countdown");
-        const questions = [
+        const Questions = [
             {
                 id: 1,
                 question: "Comment Dieu a-t-il parlé à nos ancêtres autrefois, selon Hébreux 1:1 ?",
@@ -154,6 +154,21 @@
 
             // Ajouter les autres questions ici
         ];
+        function shuffleArray(array) {
+  const shuffledArray = [...array];
+  for (let i = shuffledArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    // Echange la position des éléments
+    [shuffledArray[i], shuffledArray[j]] = [shuffledArray[j], shuffledArray[i]];
+    // Met à jour les ID des éléments échangés
+    shuffledArray[i].id = i + 1;
+    shuffledArray[j].id = j + 1;
+  }
+  return shuffledArray;
+}
+
+// Utilisation
+const questions = shuffleArray(Questions);
 
         //     let begin = `
         //     <div id="container">
@@ -288,7 +303,7 @@
                             <div class="cover"><img src="crown.png" alt="bestScore"></div>
 
                             <p class="point"> <span class="color">${info}</span> </p>
-                                <p class="point">Vous Avez <span class="color">${total} / ${questions.length*10} </span> </p>
+                                <p class="point">Vous Avez <span class="color">${total}</span> </p>
                                 
                             </div>
                                 <a href="index.html" class="btn" id="start">Recommencer</a>
@@ -346,16 +361,22 @@
                 } else {
                     // Toutes les questions ont été affichées
 
+                    total =point;
                     app.innerHTML = `
-                        <div id="container">
-       <div class="title">
-        <h1>Bible Quiz 2023</h1>
-       </div>
-       <div class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat delectus molestiae ab dolorum? Placeat rerum in ad alias accusamus ipsam vel, error at atque maxime iste labore delectus fugit quam.</div>
-       <div class="btn" id="bestScore">Meilleur Score</div>
-       <!-- <a href="jeu.html" class="btn" id="start">Commencer</a> -->
-       <div class="btn" id="start">Commencer</div>
-    </div>
+                    <div id="container">
+                        <div class="title">
+                        <h1>Bible Quiz 2023</h1>
+                        </div>
+                        <div class="container">
+                        <h2>Votre Score</h2>
+                        <div class="cover"><img src="crown.png" alt="bestScore"></div>
+
+                        <p class="point"> <span class="color">${info}</span> </p>
+                        <p class="point">Vous Avez <span class="color">${total} / ${questions.length*10} </span> </p>
+
+                        </div>
+                        <a href="index.html" class="btn" id="start">Recommencer</a>
+                        </div>
                         `;
 
                 }
@@ -411,7 +432,7 @@
                         <div class="cover"><img src="crown.png" alt="bestScore"></div>
 
                         <p class="point"> <span class="color">${info}</span> </p>
-                        <p class="point">Vous Avez <span class="color">${total} / ${questions.length*10} </span> </p>
+                        <p class="point">Vous Avez <span class="color">${total}</span> </p>
 
                         </div>
                         <a href="index.html" class="btn" id="start">Recommencer</a>
@@ -430,9 +451,8 @@
 
         function best(currentScore) {
 
-        
 
-            localStorage.setItem("total", questions.length*10);
+            // localStorage.setItem("highScore", null);
             // const points = localStorage.getItem("points");
 
             let highScore = localStorage.getItem("highScore");
