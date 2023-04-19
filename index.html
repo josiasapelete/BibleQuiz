@@ -1,39 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <title>Document</title>
 </head>
 
 <body>
   <div id="app">
     <div id="container">
       <small class="maj"><a class="color" href="">Mise à Jour</a></small>
-       <div class="title">
+      <div class="title">
         <h1>Bible Quiz 2023</h1>
-       </div>
-       <div class="desc">Soyez les bienvenues sur l'appliquation du <span class="color">BibleQuiz</span> <br> Cette App a pour but de Nous aider à vite maitriser les questions du livre d'hébreux 
+      </div>
+      <div class="desc">Soyez les bienvenues sur l'appliquation du <span class="color">BibleQuiz</span> <br> Cette App a
+        pour but de Nous aider à vite maitriser les questions du livre d'hébreux
+      </div>
       <!-- <p class="point"><span class="color">Josias APELETE </span></p></div> -->
-       <div class="btn" id="bestScore">Meilleur Score</div>
-       <!-- <a href="jeu.html" class="btn" id="start">Commencer</a> -->
-       <div class="btn" id="start">Commencer</div>
+      <div class="btn" id="bestScore">Meilleur Score</div>
+      <!-- <a href="jeu.html" class="btn" id="start">Commencer</a> -->
+      <div class="btn" id="start">Commencer</div>
+
+      <small class="aut">
+        <div class="color">Code By Josias APELETE</div>
+      </small>
     </div>
-    
-    <small class="aut"><div class="color">Code By Josias APELETE</div></small>
-</div>
-<script>
-  let app=document.getElementById("app");
-  let start= document.getElementById("start");
-  let best= document.getElementById("bestScore");
-  // let best= document.getElementById("bestScore");
-  let desc = document.querySelector(".desc");
+  </div>
+  <script>
+    let app = document.getElementById("app");
+    let start = document.getElementById("start");
+    let best = document.getElementById("bestScore");
+    // let best= document.getElementById("bestScore");
+    let desc = document.querySelector(".desc");
 
-  start.addEventListener('click',()=>{
+    start.addEventListener('click', () => {
 
-    desc.innerHTML= `
+      desc.innerHTML = `
     <div class="container">
     <h2>Regles du Jeu</h2>
     <p>Vous Avez <span class="color">15 secondes</span>  pour Repondre à la question</p>
@@ -41,24 +46,25 @@
     <p>Vous avez accès aux questions tant que vous donner la bonne reponse</p>
     <p>Si vous donnez une mauvaise reponse le Jeu s'arrête </p>
    </div>
+
     `;
-    best.style.display="none";
+      best.style.display="none";
 
-    start.innerHTML="Jouer"
-start.addEventListener("click",()=>{
-  location.href= "jeu.html"
-})
-  })
-  let highScore = localStorage.getItem("highScore");
-  let total = localStorage.getItem("total");
+      start.innerHTML = "Jouer"
+      start.addEventListener("click", () => {
+        location.href = "jeu.html"
+      })
+    })
+    let highScore = localStorage.getItem("highScore");
+    let total = localStorage.getItem("total");
 
-  if(highScore==null){
-    highScore =0;
-  }
+    if (highScore == null) {
+      highScore = 0;
+    }
 
-  best.addEventListener("click",()=>{
-    
-    desc.innerHTML= `
+    best.addEventListener("click", () => {
+
+      desc.innerHTML = `
     <div class="container">
     <h2>Meilleur Score</h2>
 <div class="cover"><img src="crown.png" alt="bestScore"></div>
@@ -67,13 +73,14 @@ start.addEventListener("click",()=>{
     
    </div>
     `;
-    best.style.display="none";
+      best.style.display = "none";
 
-    start.innerHTML="Retour"
-start.addEventListener("click",()=>{
-  location.href= "index.html"
-})
-  })
-</script>
-  </body>
+      start.innerHTML = "Retour"
+      start.addEventListener("click", () => {
+        location.href = "index.html"
+      })
+    })
+  </script>
+</body>
+
 </html>
