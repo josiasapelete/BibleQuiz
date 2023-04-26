@@ -15,7 +15,7 @@
  --input: #5f35f3;
 }
 body{
-    max-height: 100vh;
+    /* max-height: 100vh; */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -177,6 +177,7 @@ body{
 .option input:checked + span{
     background-color: #f93c3c;
 }
+
 .option input[valid]:checked + span,
 .correct{
     background-color: green;
@@ -186,11 +187,11 @@ body{
 #app .qa_set ul{
     padding: 10px;
 }
-#app .question{
+#app .question,.question{
     padding: 10px;
     border: solid #ffffffc9;
     border-radius: 10px;
-    color: #fff;
+    color: #fff;  
 }
 .nextBtn{
     /* display: inline-block; */
@@ -287,3 +288,50 @@ a{
     margin-top: 20px;
     text-align: center;
 }
+
+.box{
+    border: solid;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 10px 0;
+    background-color: #dedede5d;
+}
+.edit{
+    background-color: #00f233;
+}
+.del{
+    background: #f93c3c;
+}
+.tools{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+}
+.tools .btn{
+    padding: 10px;
+}
+.inputBox{
+    display: flex;
+    flex-direction: column;
+
+
+}
+#sendBtn{
+    margin-top: 10px;
+    background: var(--jaune);
+}
+.back{
+    color: #00f233;
+}
+.statut.good{
+    text-align: center;
+    color: #42ba96;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+  .statut.bad{
+    text-align: center;
+    color: #FA113D;
+    font-size: 1.1rem;
+    font-weight: 600;
+  }

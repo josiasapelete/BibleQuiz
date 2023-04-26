@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="app">
+        <a href="question.html" class="btn back">Retour</a>
+
+        <form action="">
+            <div class="inputBox">
+                <label for="question">Question</label>
+                <textarea name="question" id="question" cols="30" required rows="5"></textarea>
+            </div>
+            <div class="inputBox">
+                <label for="question">Option A</label>
+                <textarea name="optionA" id="optionA" cols="30" required rows="4"></textarea>
+
+            </div>
+            <div class="inputBox">
+                <label for="question">Option B</label>
+                <textarea name="optionB" id="optionB" cols="30" required rows="4"></textarea>
+
+            </div>
+            <div class="inputBox">
+                <label for="question">Reponse</label>
+                <textarea name="answer" id="answer" cols="30"  required rows="4"></textarea>
+
+            </div>
+            <div class="statut">
+
+            </div>
+            <div id="sendBtn" class="btn">Ajouter</div>
+        </form>
+    </div>
+
+    <script>
+        const statut = document.querySelector(".statut")
+
+        const sendBtn = document.getElementById("sendBtn");
+        let question= document.getElementById("question")
+        let optionA= document.getElementById("optionA")
+        let optionB= document.getElementById("optionB")
+        let answer= document.getElementById("answer")
+
+
+        sendBtn.addEventListener("click",(e)=>{
+            e.preventDefault();
+            addQuestion()
+        })
+
+        function addQuestion() {
+            var myHeaders = new Headers();
+            myHeaders.append("Content-Type", "application/json");
+
+            var raw = JSON.stringify({
+                "question": `${question.value}`,
+                "optionA": `${optionA.value}`,
+                "optionB": `${optionB.value}`,
+                "answer": `${answer.value}`
+            });
+
+            var requestOptions = {
+                method: 'POST',
+                headers: myHeaders,
+                body: raw,
+                redirect: 'follow'
+            };
+
+            fetch("https://restapi-six-gamma.vercel.app/", requestOptions)
+                .then(response => response.json())
+                .then(result => {
+                    if (result) {
+                        statut.classList.add("good")
+                        statut.innerHTML = "result.message"
+                        setInterval(location.reload(), 10000)
+                        clearInterval(10000)
+                    } else {
+                        statut.classList.add("bad")
+                        statut.innerHTML = "Ajout échoué !"
+                    }
+                })
+                .catch(error => {
+                    statut.classList.add("bad")
+                    statut.innerHTML = error.message+ "Veuillez remplir toutes les cases"
+                });
+        }
+    </script>
+</body>
+
+</html>
