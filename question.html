@@ -26,32 +26,35 @@
     </div>
 
     <script>
-        const container = document.querySelector(".container")
-
+        const container = document.querySelector(".container");
         const getAPIURL = "https://restapi-six-gamma.vercel.app/";
 
-        let questionRend = ""
+        let questionRend = "";
         fetch(getAPIURL)
-            .then(res => res.json())
-            .then(data => {
-                data.forEach(question => {
+            .then((res) => res.json())
+            .then((data) => {
+                // Tri des questions en fonction de la date de création (du plus récent au plus ancien)
+                data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+                // Génération du HTML pour chaque question triée
+                data.forEach((question) => {
                     questionRend += `
-    <div class="box">
-            
-            <div class="question">${question.question} </div>
-            <p>option A :${question.optionA}</p>
-            <p>option B : ${question.optionB}</p>
-            <p>Reponse : ${question.answer}</p>
-            <div class="tools">
-                <a class="btn del" href="del.html?id=${question._id}">Supprimer</a>
-                <a class="btn edit" href="edit.html?id=${question._id}">Modifier</a>
-            </div>
+        <div class="box">
+          <div class="question">${question.question} </div>
+          <p>option A :${question.optionA}</p>
+          <p>option B : ${question.optionB}</p>
+          <p>Reponse : ${question.answer}</p>
+          <div class="tools">
+            <a class="btn del" href="del.html?id=${question._id}">Supprimer</a>
+            <a class="btn edit" href="edit.html?id=${question._id}">Modifier</a>
+          </div>
         </div>
-    `
+      `;
                 });
-                container.innerHTML = questionRend
+                container.innerHTML = questionRend;
             })
-            .catch(err => console.log(err))
+            .catch((err) => console.log(err));
+
     </script>
 </body>
 
