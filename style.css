@@ -309,6 +309,13 @@ a{
 }
 .tools .btn{
     padding: 10px;
+    color: #fff;
+    flex-basis:40% ;
+    border-radius: 10px;
+border: solid 2px ;
+
+}
+.tools .add{
 }
 .inputBox{
     display: flex;

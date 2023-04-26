@@ -67,16 +67,7 @@ console.log(Questions)
 // Utilisation
 const questions = shuffleArray(Questions);
 
-        //     let begin = `
-        //     <div id="container">
-        //    <div class="title">
-        //     <h1>Bible Quiz 2023</h1>
-        //    </div>
-        //    <div class="desc">Bienvenue Sur l'application d'entrainement pour la finale du Quiz </div>
-        //    <div class="btn" id="bestScore">Meilleur Score</div>
-        //    <div class="btn" id="start">Commencer</div>
-        // </div>
-        //     `
+        
 
 
         let container = document.createElement("div");
@@ -104,13 +95,7 @@ const questions = shuffleArray(Questions);
 
         finish = container;
 
-        // app.innerHTML= begin;
-
-
-
-        // let begin= ``
-
-
+     
         const quizContainer = document.getElementById("body");
         const app = document.getElementById("app");
         const startBtn = document.getElementById("start");
@@ -121,11 +106,7 @@ const questions = shuffleArray(Questions);
         const submitButton = document.getElementById("submit-button");
         let userResponses = "";
 
-        // app.innerHTML=render;
 
-        // startBtn.addEventListener("click",()=>{
-        //     alert()
-        // })
         function shuffleOptions(options) {
             for (let i = options.length - 1; i > 0; i--) {
                 const j = Math.floor(Math.random() * (i + 1));
