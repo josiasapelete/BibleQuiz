@@ -70,6 +70,7 @@
         fetch(getAPIURL)
             .then(res => res.json())
             .then(quest => {
+                type.innerHTML =quest.type;
                 question.innerHTML =quest.question;
                 optionA.innerHTML =quest.optionA;
                 optionB.innerHTML =quest.optionB;
@@ -89,6 +90,7 @@
             myHeaders.append("Content-Type", "application/json");
 
             var raw = JSON.stringify({
+                "type": `${type.value}`,
                 "question": `${question.value}`,
                 "optionA": `${optionA.value}`,
                 "optionB": `${optionB.value}`,
@@ -107,7 +109,7 @@
                 .then(result => {
                     if (result) {
                         statut.classList.add("good")
-                        statut.innerHTML = "result.message"
+                        statut.innerHTML = "Modification réussie"
                         setInterval(location.href= "question.html", 10000)
                         clearInterval(10000)
                     } else {

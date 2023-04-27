@@ -342,3 +342,21 @@ border: solid 2px ;
     font-size: 1.1rem;
     font-weight: 600;
   }
+
+  .playBtns{
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    justify-content: space-between;
+  }
+  .playBtns .btnPlay{
+    padding: 10px;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 700;
+    border: solid;
+    border-radius: 10px;
+    margin-top: 10px;
+    color: #fff;
+    cursor: pointer;
+  }
