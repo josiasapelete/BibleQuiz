@@ -15,6 +15,10 @@
 
         <form action="">
             <div class="inputBox">
+                <label for="type">Type</label>
+                <input type="text" id="type">
+            </div>
+            <div class="inputBox">
                 <label for="question">Question</label>
                 <textarea name="question" id="question" cols="30" required rows="5"></textarea>
             </div>
@@ -44,6 +48,7 @@
         const statut = document.querySelector(".statut")
 
         const sendBtn = document.getElementById("sendBtn");
+        let type= document.getElementById("type")
         let question= document.getElementById("question")
         let optionA= document.getElementById("optionA")
         let optionB= document.getElementById("optionB")
@@ -60,6 +65,7 @@
             myHeaders.append("Content-Type", "application/json");
 
             var raw = JSON.stringify({
+                "type": `${type.value}`,
                 "question": `${question.value}`,
                 "optionA": `${optionA.value}`,
                 "optionB": `${optionB.value}`,
