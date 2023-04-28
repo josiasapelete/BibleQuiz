@@ -12,18 +12,18 @@
 <body>
   <div id="app">
     <div id="container">
-      <small class="maj"><a class="color" href="https://transcendent-dragon-33e675.netlify.app/BibleQuiz_1_1.0.apk">Mise à Jour</a></small>
+      <small class="maj"><a class="color" href="https://transcendent-dragon-33e675.netlify.app/BibleQuiz_1_1.0.apk">Mise
+          à Jour</a></small>
       <div class="title">
         <h1>Bible Quiz 2023</h1>
       </div>
+      <div class="bestRend"></div>
+
       <div class="desc">Soyez les bienvenues sur l'appliquation du <span class="color">BibleQuiz</span> <br> Cette App a
         pour but de Nous aider à vite maitriser les questions du livre d'hébreux
       </div>
-      <!-- <p class="point"><span class="color">Josias APELETE </span></p></div> -->
       <div class="btn" id="bestScore">Meilleur Score</div>
-      <!-- <a href="jeu.html" class="btn" id="start">Commencer</a> -->
       <div class="btn" id="start">Commencer</div>
-      <a href="question.html">questions</a>
 
       <small class="aut">
         <div class="color">Code By Josias APELETE</div>
@@ -31,6 +31,7 @@
     </div>
   </div>
   <script>
+    let bestRend = document.querySelector(".bestRend")
     let app = document.getElementById("app");
     let start = document.getElementById("start");
     let best = document.getElementById("bestScore");
@@ -42,39 +43,165 @@
       desc.innerHTML = `
     <div class="container">
     <h2>Regles du Jeu</h2>
-    <p>Vous Avez <span class="color">15 secondes</span>  pour Repondre à la question</p>
+    <p>Vous allez choisir la durée du jeu</p>
     <p>Une fois que vous donner la reponse appuyer sur <span class="color">Suivant</span></p>
-    <p>Vous avez accès aux questions tant que vous donner la bonne reponse</p>
-    <p>Si vous donnez une mauvaise reponse le Jeu s'arrête </p>
+    <p>Cliquez sur suivant si vous ne connaissez pas la reponse </p>
+    <p>Une fois le temps écoulé, le Jeu s'arrête </p>
    </div>
 
     `;
-      best.style.display="none";
+      best.style.display = "none";
 
       start.innerHTML = "Suivant"
       start.addEventListener("click", () => {
         location.href = "jeu.html"
       })
     })
-    let highScore = localStorage.getItem("highScore");
+    let highScore = (localStorage.getItem("highScore"));
+    let planHighScore = localStorage.getItem("planHighScore");
+    let passageHighScore = localStorage.getItem("passageHighScore");
+    let versetHighScore = localStorage.getItem("versetHighScore");
+    let livreHighScore = localStorage.getItem("livreHighScore");
     let total = localStorage.getItem("total");
 
-    if (highScore == null) {
-      highScore = 0;
+
+
+    function setToZero(h) {
+      if (h == null) {
+        return h = 0;
+      }
+      return parseFloat(h)
     }
-
     best.addEventListener("click", () => {
+      let scoreColor;
+      function setColor(h) {
+        let color;
+        if (h < 50) {
+          color = "red"
+        } else if (h < 80) {
+          color = "#f49d00"
+        } else {
+          color = "#00f233"
+        }
+        return color
+      }
 
-      desc.innerHTML = `
-    <div class="container">
-    <h2>Meilleur Score</h2>
-<div class="cover"><img src="crown.png" alt="bestScore"></div>
+      // Création des éléments HTML
+      const container = document.createElement('div');
+      container.className = 'container';
 
-    <p class="point">Votre Meilleur score est de <span class="color">${highScore} / ${total}  </span> </p>
-    
-   </div>
-    `;
-      best.style.display = "none";
+      const h2 = document.createElement('h2');
+      h2.textContent = 'Meilleur Score';
+
+      const coverDiv = document.createElement('div');
+      coverDiv.className = 'cover';
+
+      const img = document.createElement('img');
+      img.src = 'crown.png';
+      img.alt = 'bestScore';
+
+
+      const lineGeneral = document.createElement('div');
+      const pointGeneral = document.createElement('span');
+      pointGeneral.className = "point"
+      lineGeneral.className = 'line';
+      pointGeneral.innerHTML = `Général  : ${setToZero(highScore)} %`
+      const scoredGeneral = document.createElement("div");
+      scoredGeneral.classList = "scored";
+      lineGeneral.appendChild(pointGeneral)
+      lineGeneral.appendChild(scoredGeneral);
+      scoredGeneral.style.width = setToZero(highScore) + "%"
+      scoredGeneral.style.background = setColor(highScore)
+
+
+      const linePlan = document.createElement('div');
+      const pointPlan = document.createElement('span');
+      pointPlan.className = "point";
+      linePlan.className = 'line';
+      pointPlan.innerHTML = `Plan  : ${setToZero(planHighScore)} %`
+      const scoredPlan = document.createElement("div");
+      scoredPlan.classList = "scored";
+      linePlan.appendChild(pointPlan)
+      linePlan.appendChild(scoredPlan);
+      scoredPlan.style.width = setToZero(planHighScore) + "%"
+      scoredPlan.style.background = setColor(planHighScore)
+
+
+      const lineQuestionnaire = document.createElement('div');
+      const pointquestionnaire = document.createElement('span');
+      pointquestionnaire.className = "point";
+      lineQuestionnaire.className = 'line';
+      const scoredQuestion = document.createElement("div");
+      scoredQuestion.classList = "scored";
+      pointquestionnaire.innerHTML = `Questionnaire  : ${setToZero(passageHighScore)} %`
+      lineQuestionnaire.appendChild(pointquestionnaire)
+      lineQuestionnaire.appendChild(scoredQuestion);
+      scoredQuestion.style.width = setToZero(passageHighScore) + "%"
+      scoredQuestion.style.background = setColor(passageHighScore)
+
+      const lineVerset = document.createElement('div');
+      const pointVerset = document.createElement('span');
+      pointVerset.className = "point";
+      lineVerset.className = 'line';
+      const scoreVerset = document.createElement("div");
+      scoreVerset.classList = "scored";
+      pointVerset.innerHTML = `Verset  : ${setToZero(versetHighScore)} %`
+      lineVerset.appendChild(pointVerset)
+      lineVerset.appendChild(scoreVerset);
+      scoreVerset.style.width = setToZero(versetHighScore) + "%"
+      scoreVerset.style.background = setColor(versetHighScore)
+
+
+      const lineLivre = document.createElement('div');
+      const pointLivre = document.createElement('span');
+      pointLivre.className = "point";
+      lineLivre.className = 'line';
+      const scoreLivre = document.createElement("div");
+      scoreLivre.classList = "scored";
+      pointLivre.innerHTML = `Livre  : ${setToZero(livreHighScore)} %`
+      lineLivre.appendChild(pointLivre)
+      lineLivre.appendChild(scoreLivre);
+      scoreLivre.style.width = setToZero(livreHighScore) + "%"
+      scoreLivre.style.background = setColor(livreHighScore)
+
+      coverDiv.appendChild(img);
+
+      container.appendChild(h2);
+      container.appendChild(coverDiv);
+      container.appendChild(lineGeneral);
+      container.appendChild(linePlan);
+      container.appendChild(lineQuestionnaire);
+      container.appendChild(lineVerset);
+      container.appendChild(lineLivre);
+
+      // Fonction pour mettre le nombre à zéro si la variable est nulle ou non définie
+
+
+      // bestRend.appendChild(container);
+      bestRend.innerHTML = container.outerHTML
+      // desc.innerHTML= container
+      desc.style.display = "none";
+      // best.style.display = "none";
+      best.innerHTML = "Réinitialiser"
+      if (best.innerHTML == "Réinitialiser") {
+
+        best.addEventListener("click", () => {
+          if(confirm("Etes vous sûr de vouloir réinitialiser vos scores ?")){
+
+            localStorage.setItem("highScore", 0);
+          localStorage.setItem("passageHighScore", 0);
+          localStorage.setItem("versetHighScore", 0);
+          localStorage.setItem("livreHighScore", 0);
+          localStorage.setItem("planHighScore", 0);
+
+          setTimeout(()=>{
+
+            location.href ="index.html"
+          },2000)
+          }
+          
+        })
+      }
 
       start.innerHTML = "Retour"
       start.addEventListener("click", () => {

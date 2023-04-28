@@ -15,9 +15,12 @@
 
         <form action="">
             <div class="container">
-                <div class="inputBox">
-                    <label for="type">Type</label>
-                    <input type="text" id="type">
+                <label for="type">Type : <span class="typeChoice"></span></label>
+                <div class="typeBtns">
+                    <input type="button" class="typeBtn"  id="plan"  value="plan">
+                    <input type="button" class="typeBtn"  id="passage"  value="questionnaire">
+                    <input type="button" class="typeBtn"  id="verset"  value="verset">
+                    <input type="button"  class="typeBtn" id="livre"  value="livre">
                 </div>
                 <div class="inputBox">
                     <label for="question">Question</label>
@@ -55,14 +58,45 @@
         const id = curlid.slice(4);
         const statut = document.querySelector(".statut")
 
+
+        let type =""
+        let typeChoice= document.querySelector(".typeChoice")
         const sendBtn = document.getElementById("sendBtn");
-        let type= document.getElementById("type")
+        // let type= document.getElementById("type")
+        let verset= document.getElementById("verset")
+        let livre= document.getElementById("livre")
+        let passage= document.getElementById("passage")
+        let plan= document.getElementById("plan")
         let question = document.getElementById("question")
         let optionA = document.getElementById("optionA")
         let optionB = document.getElementById("optionB")
         let answer = document.getElementById("answer")
         let container = document.querySelector(".container")
 
+        verset.addEventListener("click",()=>{
+            type = "verset";
+            typeChoice.innerHTML =type
+        })
+
+        plan.addEventListener("click",()=>{
+            type = "plan";
+            typeChoice.innerHTML =type
+
+
+        })
+
+        passage.addEventListener("click",()=>{
+            type = "passage";
+            typeChoice.innerHTML =type
+
+
+        })
+        livre.addEventListener("click",()=>{
+            type = "livre";
+            typeChoice.innerHTML =type
+
+
+        })
 
         const getAPIURL = `https://restapi-six-gamma.vercel.app/${id}`;
 
@@ -82,6 +116,7 @@
 
         sendBtn.addEventListener("click", (e) => {
             e.preventDefault();
+            // console.log(type)
             addQuestion()
         })
 
@@ -90,7 +125,7 @@
             myHeaders.append("Content-Type", "application/json");
 
             var raw = JSON.stringify({
-                "type": `${type.value}`,
+                "type": `${type}`,
                 "question": `${question.value}`,
                 "optionA": `${optionA.value}`,
                 "optionB": `${optionB.value}`,

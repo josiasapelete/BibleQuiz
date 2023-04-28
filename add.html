@@ -14,9 +14,12 @@
         <a href="question.html" class="btn back">Retour</a>
 
         <form action="">
-            <div class="inputBox">
-                <label for="type">Type</label>
-                <input type="text" id="type">
+            <label for="type">Type : <span class="typeChoice"></span></label>
+            <div class="typeBtns">
+                <input type="button" class="typeBtn"  id="plan"  value="plan">
+                <input type="button" class="typeBtn"  id="passage"  value="questionnaire">
+                <input type="button" class="typeBtn"  id="verset"  value="verset">
+                <input type="button"  class="typeBtn" id="livre"  value="livre">
             </div>
             <div class="inputBox">
                 <label for="question">Question</label>
@@ -47,13 +50,44 @@
     <script>
         const statut = document.querySelector(".statut")
 
+        let type =""
+        let typeChoice= document.querySelector(".typeChoice")
         const sendBtn = document.getElementById("sendBtn");
-        let type= document.getElementById("type")
+        // let type= document.getElementById("type")
+        let verset= document.getElementById("verset")
+        let livre= document.getElementById("livre")
+        let passage= document.getElementById("passage")
+        let plan= document.getElementById("plan")
         let question= document.getElementById("question")
         let optionA= document.getElementById("optionA")
         let optionB= document.getElementById("optionB")
         let answer= document.getElementById("answer")
 
+
+        verset.addEventListener("click",()=>{
+            type = "verset";
+            typeChoice.innerHTML =type
+        })
+
+        plan.addEventListener("click",()=>{
+            type = "plan";
+            typeChoice.innerHTML =type
+
+
+        })
+
+        passage.addEventListener("click",()=>{
+            type = "passage";
+            typeChoice.innerHTML =type
+
+
+        })
+        livre.addEventListener("click",()=>{
+            type = "livre";
+            typeChoice.innerHTML =type
+
+
+        })
 
         sendBtn.addEventListener("click",(e)=>{
             e.preventDefault();
@@ -65,7 +99,7 @@
             myHeaders.append("Content-Type", "application/json");
 
             var raw = JSON.stringify({
-                "type": `${type.value}`,
+                "type": `${type}`,
                 "question": `${question.value}`,
                 "optionA": `${optionA.value}`,
                 "optionB": `${optionB.value}`,
@@ -84,7 +118,7 @@
                 .then(result => {
                     if (result) {
                         statut.classList.add("good")
-                        statut.innerHTML = "result.message"
+                        statut.innerHTML = "Ajout réussie"
                         setInterval(location.reload(), 10000)
                         clearInterval(10000)
                     } else {
