@@ -104,7 +104,7 @@
         fetch(getAPIURL)
             .then(res => res.json())
             .then(quest => {
-                type.innerHTML =quest.type;
+                typeChoice.innerHTML =quest.type;
                 question.innerHTML =quest.question;
                 optionA.innerHTML =quest.optionA;
                 optionB.innerHTML =quest.optionB;
@@ -125,7 +125,7 @@
             myHeaders.append("Content-Type", "application/json");
 
             var raw = JSON.stringify({
-                "type": `${type}`,
+                "type": `${typeChoice.innerHTML}`,
                 "question": `${question.value}`,
                 "optionA": `${optionA.value}`,
                 "optionB": `${optionB.value}`,
