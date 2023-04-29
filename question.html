@@ -11,8 +11,14 @@
 
 <body>
     <div id="app">
-        <h2 class="color">Les questions</h2>
+        <h2 class="head">Les questions : <span class="nbr"></span></h2>
 
+        <div class="typeBtns">
+            <input type="button" class="typeBtn"  value="plan" id="plan">
+            <input type="button" class="typeBtn" value="verset" id="verset">
+            <input type="button" class="typeBtn" value="questionnaire" id="questionnaire">
+            <input type="button" class="typeBtn" value="livre" id="livre">
+        </div>
         <div class="tools">
             <a class="btn add" href="add.html">AJouter</a>
             <a href="index.html" class="btn">Acceuil</a>
@@ -26,13 +32,56 @@
     </div>
 
     <script>
-        const container = document.querySelector(".container");
-        const getAPIURL = "https://restapi-six-gamma.vercel.app/";
+        let nbr = document.querySelector(".nbr")
+        const jouer = document.getElementById("jouer");
+const plan = document.getElementById("plan");
+const questionnaire = document.getElementById("questionnaire");
+const verset = document.getElementById("verset");
+const livre = document.getElementById("livre");
 
+//Fetch l'api du quiz
+ let getAPIURL = "https://restapi-six-gamma.vercel.app/";
+ fetchAPI()
+
+// jouer.addEventListener("click", () => {
+
+//     getAPIURL = "https://restapi-six-gamma.vercel.app/";
+//     fetchAPI()
+
+//     playBtns.style.display = "none"
+//     headerDiv.style.display = "block"
+//     high ="highScore";
+
+// })
+plan.addEventListener("click", () => {
+
+    getAPIURL = "https://restapi-six-gamma.vercel.app/type/plan";
+    fetchAPI()
+
+})
+questionnaire.addEventListener("click", () => {
+    getAPIURL = "https://restapi-six-gamma.vercel.app/type/passage";
+    fetchAPI()
+
+})
+verset.addEventListener("click", () => {
+    getAPIURL = "https://restapi-six-gamma.vercel.app/type/verset";
+    fetchAPI()
+
+})
+livre.addEventListener("click", () => {
+    getAPIURL = "https://restapi-six-gamma.vercel.app/type/livre";
+    fetchAPI()
+
+})
+
+function  fetchAPI(){
+         const container = document.querySelector(".container");
         let questionRend = "";
         fetch(getAPIURL)
             .then((res) => res.json())
             .then((data) => {
+                nbr.innerHTML = data.length
                 // Tri des questions en fonction de la date de création (du plus récent au plus ancien)
                 data.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
 
@@ -55,6 +104,7 @@
                 container.innerHTML = questionRend;
             })
             .catch((err) => console.log(err));
+       }
 
     </script>
 </body>

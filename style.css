@@ -399,7 +399,8 @@ border: solid 2px ;
     color: #00f233;
     font-weight: 700;
   }
-  .timeBtns{
+  .timeBtns,
+  .typeBtns{
     display: flex;
     justify-content: space-between;
   }
@@ -412,4 +413,14 @@ border: solid 2px ;
 
   .bestRend{
     width: 100%;
+  }
+  .typeBtn{
+    flex-basis: 20%;
+    border-radius: 10px;
+    border: #00f233;
+    padding: 10px;
+  }
+  .head{
+    color: #f49d00;
+    text-align: center;
   }
