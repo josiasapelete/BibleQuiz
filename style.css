@@ -290,10 +290,11 @@ a{
     font-weight: 400;
 
 }
-.answer{
-    color: #00f233;
-    font-size: 1.1rem;
+.answer span{
+    color: #fff;
+    font-size: 1rem;
     font-weight: 800;
+    background-color: #00f233;
 }
 .cover{
     display: flex;

@@ -106,7 +106,6 @@ function fetchAPI() {
                 return shuffledArray;
             }
 
-            console.log(Questions)
             // Utilisation
             const questions = shuffleArray(Questions);
 
@@ -181,7 +180,7 @@ function fetchAPI() {
                     optionItem.classList.add("option");
                     const optionInput = document.createElement("input");
                     optionInput.setAttribute("type", "radio");
-                    optionInput.setAttribute("name", `question-${question.id}`);
+                    optionInput.setAttribute("name", `question-${question._id}`);
                     optionInput.setAttribute("value", option);
                     optionInput.addEventListener("click", (event) => {
                         const selectedOption = event.target.value;
@@ -191,15 +190,20 @@ function fetchAPI() {
                             score.innerHTML = point;
                         } else {
 
-                            let answerRend = document.createElement("div");
-                            answerRend.classList.add("answer");
+                            const allOptions = document.querySelectorAll(`input[name="question-${question._id}"]`);
+                            allOptions.forEach((opt) => {
+                                if(opt.value == question.answer){
+                                    const good  = opt.parentNode
+                                    good.setAttribute("valid",true)
+                                    good.classList.add("answer")
+                                }
+                            });
 
-                            optionsList.appendChild(answerRend)
-                            answerRend.innerHTML = `Bonne reponse : ${question.answer}`;
+                            
 
                         }
                         // Désactiver toutes les options de réponse après que l'utilisateur a fait son choix
-                        const allOptions = document.querySelectorAll(`input[name="question-${question.id}"]`);
+                        const allOptions = document.querySelectorAll(`input[name="question-${question._id}"]`);
                         allOptions.forEach((opt) => {
                             opt.disabled = true;
                         });
@@ -290,18 +294,19 @@ function fetchAPI() {
                      countdown.innerHTML = duration;
 
 
-                        const allOptions = document.querySelectorAll(`input[name="question-${question.id}"]`);
+                        const allOptions = document.querySelectorAll(`input[name="question-${question._id}"]`);
 
                         
                         // Désactiver toutes les options de réponse lorsque le temps est écoulé
                         allOptions.forEach((opt) => {
                             opt.disabled = true;
                         });
-                        let answerRend = document.createElement("div");
-                            answerRend.classList.add("answer");
-
-                            optionsList.appendChild(answerRend)
-                            answerRend.innerHTML = `Bonne reponse : ${question.answer}`;
+                            allOptions.forEach((opt) => {
+                                if(opt.value == question.answer){
+                                    const good  = opt.parentNode
+                                    good.setAttribute("valid",true)
+                                    good.classList.add("answer")
+                                }})
                         // Arrêter le décompteur de temps lorsqu'il atteint zéro
                         clearInterval(durationTime);
 
